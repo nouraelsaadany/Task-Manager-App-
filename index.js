@@ -2,6 +2,8 @@
 //setting up some variables for the elements on the page 
 
 const form = document.querySelector('form');
+const formSearch = document.getElementById('searchForm');
+
 const ul = document.querySelector('ul');
 const addButton = document.getElementById('addButton');
 
@@ -11,7 +13,7 @@ const input = document.getElementById('item');
 const search = document.getElementById('search');
 
 let itemsArray = []
-
+console.log(itemsArray)
 // creating lists 
 
 const liMaker = text => {
@@ -21,7 +23,7 @@ const liMaker = text => {
    const leftColumnDiv = document.createElement('div');
    leftColumnDiv.className= "col-sm-4";
    const li = document.createElement('li')
-   li.id= Date.now();
+   //li.id= Date.now();
    li.textContent = text;
    leftColumnDiv.appendChild(li);
    
@@ -50,15 +52,29 @@ form.addEventListener('submit', function (e) {
     }
 });
 
+
+
+formSearch.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if(search.value!==''){
+        let result = itemsArray.filter( itemsArray=>{
+            return search==itemsArray
+        })
+   console.log(result)
+        localStorage.setItem('items', JSON.stringify(itemsArray));
+    }
+});
 const addBListen = (button, child, size) =>
     button.addEventListener('click', function () {
         ul.removeChild(child);
         itemsArray.pop(size-1)
         localStorage.setItem('items', JSON.stringify(itemsArray));
+        console.log(itemsArray)
     });
 
 const loadFromLocalStorage = ()=>{
     const temp = JSON.parse(localStorage.getItem('items'));
+    console.log("temp "+ temp)
     itemsArray = temp? temp:[];
     temp.forEach(element => {
         liMaker(element)
@@ -66,3 +82,21 @@ const loadFromLocalStorage = ()=>{
 };
 
 loadFromLocalStorage();
+//let itemsX=  localStorage.getItem('items', JSON.stringify(itemsArray));
+
+
+
+    var itemsX=  localStorage.getItem('items', JSON.stringify(itemsArray));
+    console.log(itemsArray);
+
+   
+//   var  result=itemsX.filter(function(search){
+//       return search;
+//   } )
+console.log(search.value)
+var result = itemsArray.indexOf(search.value);
+
+
+   console.log(result)
+    //let itemsArray= 
+//searchFunction();
