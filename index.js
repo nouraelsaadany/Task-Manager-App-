@@ -1,7 +1,7 @@
 
 //setting up some variables for the elements on the page 
 
-const form = document.querySelector('form');
+const form = document.getElementById('form');
 const formSearch = document.getElementById('searchForm');
 
 const ul = document.querySelector('ul');
@@ -22,7 +22,8 @@ const liMaker = text => {
    
    const leftColumnDiv = document.createElement('div');
    leftColumnDiv.className= "col-sm-4";
-   const li = document.createElement('li')
+   const li = document.createElement('li');
+   li.className="list-group-item list-group-item-info"
    //li.id= Date.now();
    li.textContent = text;
    leftColumnDiv.appendChild(li);
@@ -30,6 +31,7 @@ const liMaker = text => {
     const rightColumnDiv = document.createElement('div');
     rightColumnDiv.className= "col-sm-4";
     const button= document.createElement('button');
+    button.className="btn btn-outline-success my-2 my-sm-0";
     button.textContent= "DELETE";
     addBListen(button, rowDiv, itemsArray.length)
     rightColumnDiv.append(button)
@@ -57,15 +59,28 @@ form.addEventListener('submit', function (e) {
 formSearch.addEventListener('submit', function (e) {
     e.preventDefault();
     if(search.value!==''){
-        let result = itemsArray.filter( itemsArray=>{
-            return search==itemsArray
-        })
-   console.log(result)
+        let result = itemsArray.filter(isInList)
+        liMaker(result);
+            console.log(result)
         localStorage.setItem('items', JSON.stringify(itemsArray));
     }
 });
+
+function isInList(value) {
+    
+    if(value.includes(search.value)){
+        return value
+    }
+    
+  }
+
 const addBListen = (button, child, size) =>
     button.addEventListener('click', function () {
+        const div = document.createElement('div');
+        div.className="alert alert-danger";
+        div.role="alert"
+        div.textContent= "are you sure ?"
+
         ul.removeChild(child);
         itemsArray.pop(size-1)
         localStorage.setItem('items', JSON.stringify(itemsArray));
@@ -82,21 +97,13 @@ const loadFromLocalStorage = ()=>{
 };
 
 loadFromLocalStorage();
-//let itemsX=  localStorage.getItem('items', JSON.stringify(itemsArray));
-
-
 
     var itemsX=  localStorage.getItem('items', JSON.stringify(itemsArray));
     console.log(itemsArray);
 
-   
-//   var  result=itemsX.filter(function(search){
-//       return search;
-//   } )
+
 console.log(search.value)
 var result = itemsArray.indexOf(search.value);
 
 
    console.log(result)
-    //let itemsArray= 
-//searchFunction();

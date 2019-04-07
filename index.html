@@ -8,33 +8,56 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Task Manager Application !! </title>
   </head>
+
   <body>
-<form id="searchForm">
-    <input id="search" type="text" placeholder="Search..">
-</form>
+<!-- Image and text -->
+
+<div class="container">
+
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+         Task Manager App !!
+        </a>
+      </nav>
     
-    <form>
-        <input id="item" type="text" placeholder="New Task">
+
+
+    <form id="searchForm">
+        <div class="form-group">
+          <label for="search">Search</label>
+          <input type="text" class="form-control mr-sm-2" id="search" placeholder="Search ... ">
+        </div>
       </form>
-
-      <h2>Items</h2>
-      <div class="container">
-      <div class="row">
-          <div class="col-6">
-            <ul ></ul>
-              <a></a>
+      
+      <form id="form">
+        <div class="form-group">
+          <label for="item">Add Item </label>
+          <input type="text" class="form-control" id="item" placeholder="Item .. ">
+        </div>
+      </form>
+      
+      <div class="p-3 mb-2 bg-primary text-white" > Item</div>
+           
+            <div class="container">
+            <div class="row">
+                <div class="col-6">
+                  <ul class="list-group shadow-sm p-3 mb-5 bg-white rounded"></ul>
+                    <a></a>
+                  </div>
+             
+         </div>
+      
             </div>
-          <!-- <div class="col-6">
-              <button > Delete</button>
-           </div> -->
-   </div>
+          
 
-      </div>
-    
+</div>
+
+ 
    
-  </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
