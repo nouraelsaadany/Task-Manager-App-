@@ -16,33 +16,40 @@
 
 <div class="container">
 
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-         Task Manager App !!
-        </a>
-      </nav>
+  
+      <div class="card text-center">
+          <div class="card-header">
+           Task Manager App.. 
+          </div>
+          <div class="card-body">
+         
+            <form id="searchForm">
+                <div class="form-group row justify-content-md-center">
+                  <input type="text" class="form-control mr-sm-2 col-sm-6 text-center"  id="search" placeholder="Search ... ">
+                </div>
+              </form>
+           
+            <form id="form">
+                <div class="form-group row justify-content-md-center">
+              
+                  <input type="text" class="form-control  mr-sm-2 col-sm-6 text-center" id="item" placeholder="Add new Item ...  ">
+                </div>
+              </form>
+          </div>
+          <div class="card-footer text-muted">
+           You can search, add , delete items
+          </div>
+        </div>
+
+
     
-
-
-    <form id="searchForm">
-        <div class="form-group">
-          <label for="search">Search</label>
-          <input type="text" class="form-control mr-sm-2" id="search" placeholder="Search ... ">
-        </div>
-      </form>
       
-      <form id="form">
-        <div class="form-group">
-          <label for="item">Add Item </label>
-          <input type="text" class="form-control" id="item" placeholder="Item .. ">
-        </div>
-      </form>
+    
       
-      <div class="p-3 mb-2 bg-primary text-white" > Item</div>
+      <div class="row p-3 mb-2 bg-primary text-white justify-content-md-center " > Items</div>
            
             <div class="container">
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-6">
                   <ul class="list-group shadow-sm p-3 mb-5 bg-white rounded"></ul>
                     <a></a>
