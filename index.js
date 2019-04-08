@@ -3,22 +3,21 @@
 
 const form = document.getElementById('form');
 const formSearch = document.getElementById('searchForm');
-
 const ul = document.querySelector('ul');
 const addButton = document.getElementById('addButton');
-
 const deleteButton = document.createElement('button');
-
 const input = document.getElementById('item');
 const search = document.getElementById('search');
 
+
 let itemsArray = []
 console.log(itemsArray)
-// creating lists 
 
-const liMaker = text => {
+// creating lists 
+function liMaker(text){
    const rowDiv = document.createElement('div');
    rowDiv.className= "row";
+  
    
    const leftColumnDiv = document.createElement('div');
    leftColumnDiv.className= "col-sm-4";
@@ -54,14 +53,23 @@ form.addEventListener('submit', function (e) {
     }
 });
 
+// Filter 
 
-
-formSearch.addEventListener('submit', function (e) {
+formSearch.addEventListener('keyup', function (e) {
     e.preventDefault();
     if(search.value!==''){
-        let result = itemsArray.filter(isInList)
-        liMaker(result);
-            console.log(result)
+        let result = itemsArray.filter(isInList);
+        const text = e.target.value;
+        for(let i = 0; i < ul.childNodes.length; i++){
+            const rowText = ul.childNodes[i].childNodes[0].childNodes[0].childNodes[0].data.toLowerCase();
+            console.log(rowText)
+            if(rowText.indexOf(text) != -1){
+                ul.childNodes[i].style.display = "block"
+            }else {
+                ul.childNodes[i].style.display = "none"
+            }
+        }
+        
         localStorage.setItem('items', JSON.stringify(itemsArray));
     }
 });
@@ -69,10 +77,12 @@ formSearch.addEventListener('submit', function (e) {
 function isInList(value) {
     
     if(value.includes(search.value)){
-        return value
+        return value.toLowerCase();
     }
     
   }
+
+
 
 const addBListen = (button, child, size) =>
     button.addEventListener('click', function () {
@@ -90,8 +100,8 @@ const addBListen = (button, child, size) =>
 const loadFromLocalStorage = ()=>{
     const temp = JSON.parse(localStorage.getItem('items'));
     console.log("temp "+ temp)
-    itemsArray = temp? temp:[];
-    temp.forEach(element => {
+    itemsArray = temp !== null? temp:[];
+    itemsArray.forEach(element => {
         liMaker(element)
     });
 };
